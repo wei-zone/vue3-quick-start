@@ -2,11 +2,13 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## Customize configuration
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
+## 配置
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
+## 开始
 
 ```sh
 pnpm install

@@ -42,5 +42,10 @@
         "vite": "^4.3.9",
         "vitest": "^0.32.0",
         "vue-tsc": "^1.6.5"
+    },
+    "config": {
+        "commitizen": {
+            "path": "cz-conventional-changelog"
+        }
     }
 }
