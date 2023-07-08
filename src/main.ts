@@ -11,4 +11,8 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 
+console.log(import.meta.env)
+// @ts-ignore
+console.log(process.env)
+
 app.mount('#app')

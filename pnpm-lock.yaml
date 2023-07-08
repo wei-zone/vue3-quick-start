@@ -14,6 +14,7 @@ specifiers:
   '@vue/test-utils': ^2.3.2
   '@vue/tsconfig': ^0.4.0
   cypress: ^12.14.0
+  dayjs: ^1.11.9
   eslint: ^8.39.0
   eslint-plugin-cypress: ^2.13.3
   eslint-plugin-vue: ^9.11.0
@@ -33,6 +34,7 @@ specifiers:
   vue-tsc: ^1.6.5
 
 dependencies:
+  dayjs: registry.npmmirror.com/dayjs/1.11.9
   pinia: registry.npmmirror.com/pinia/2.1.4_typescript@5.0.4+vue@3.3.4
   vue: registry.npmmirror.com/vue/3.3.4
   vue-router: registry.npmmirror.com/vue-router/4.2.4_vue@3.3.4
@@ -2674,7 +2676,6 @@ packages:
     resolution: {integrity: sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dayjs/-/dayjs-1.11.9.tgz}
     name: dayjs
     version: 1.11.9
-    dev: true
 
   registry.npmmirror.com/de-indent/1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/de-indent/-/de-indent-1.0.2.tgz}
