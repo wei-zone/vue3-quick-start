@@ -21,6 +21,8 @@
         "vue-router": "^4.2.2"
     },
     "devDependencies": {
+        "@commitlint/cli": "^17.6.6",
+        "@commitlint/config-conventional": "^17.6.6",
         "@rushstack/eslint-patch": "^1.2.0",
         "@tsconfig/node18": "^2.0.1",
         "@types/jsdom": "^21.1.1",
@@ -56,5 +58,10 @@
         "commitizen": {
             "path": "cz-conventional-changelog"
         }
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
     }
 }
