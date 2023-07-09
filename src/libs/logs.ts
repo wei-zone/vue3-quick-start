@@ -15,7 +15,6 @@ import { loadRemoteJs } from '@/libs/utils'
     }
     loadRemoteJs(src).then(res => {
         console.log(import.meta.env)
-        console.log(res)
         // @ts-ignore
         eruda.init()
     })
