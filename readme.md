@@ -52,3 +52,14 @@ pnpm test:e2e
 ```sh
 pnpm lint
 ```
+
+
+## 移动端调试
+
+[eruda](https://github.com/liriliri/eruda)
+
+开启方式
+
+链接后添加`?debug=true`
+
+如：[http://127.0.0.1:5000/?debug=true](http://127.0.0.1:5000/?debug=true)
