@@ -11,12 +11,21 @@ const { name: title, version: APP_VERSION } = require('./package.json')
 export default (configEnv: ConfigEnv) => {
     const { mode } = configEnv
     const env = loadEnv(mode, process.cwd())
-
     // 增加环境变量
-    env.APP_VERSION = APP_VERSION
-    env.APP_NAME = title
-    env.APP_BUILD_TIME = dayjs().format('YYYY-MM-DD HH:mm:ss')
+    const metaEnv = {
+        APP_VERSION,
+        APP_NAME: title,
+        APP_BUILD_TIME: dayjs().format('YYYY-MM-DD HH:mm:ss')
+    }
 
+    // import.meta.env.key 环境变量生成
+    const getMetaEnv = (env: Record<string, any>) => {
+        const metaEnv: Record<string, any> = {}
+        for (const key in env) {
+            metaEnv[`import.meta.env.${key}`] = JSON.stringify(env[key])
+        }
+        return metaEnv
+    }
     return defineConfig({
         // 设置打包路径
         base: env.VITE_BASE_URL,
@@ -59,12 +68,7 @@ export default (configEnv: ConfigEnv) => {
         },
         // 环境变量常量
         define: {
-            'import.meta.env': JSON.stringify({
-                ...env
-            }),
-            'process.env': JSON.stringify({
-                ...env
-            })
+            ...getMetaEnv(metaEnv)
         },
         // 本地服务配置
         server: {

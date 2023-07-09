@@ -12,9 +12,8 @@ app.use(createPinia())
 app.use(router)
 
 console.log(import.meta.env)
-console.log(import.meta.env.VITE_BASE_URL)
 
 // @ts-ignore
-console.log(process.env)
+// console.log(process.env)
 
 app.mount('#app')
