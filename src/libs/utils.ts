@@ -8,7 +8,7 @@
  * @desc 动态加载远程的js
  * @param {*} src js链接
  */
-export function loadRemoteJs(src) {
+export function loadRemoteJs(src: string) {
     return new Promise((resolve, reject) => {
         const scriptNode = document.createElement('script')
         scriptNode.setAttribute('type', 'text/javascript')
@@ -26,7 +26,7 @@ export function loadRemoteJs(src) {
     })
 }
 
-export function getSearchParam(name) {
+export function getSearchParam(name: string) {
     const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i')
     const r = window.location.search.substr(1).match(reg)
     if (r != null) {
