@@ -1,8 +1,10 @@
 import { fileURLToPath, URL } from 'node:url'
-
 import { ConfigEnv, defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import dayjs from 'dayjs'
 
 const { name: title, version: APP_VERSION } = require('./package.json')
@@ -30,7 +32,42 @@ export default (configEnv: ConfigEnv) => {
         // 设置打包路径
         base: env.VITE_BASE_URL,
         // 插件
-        plugins: [vue(), vueJsx()],
+        plugins: [
+            vue(),
+            vueJsx(),
+            // 按需导入
+            AutoImport({
+                resolvers: [ElementPlusResolver()],
+                // targets to transform
+                include: [
+                    /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+                    /\.vue$/,
+                    /\.vue\?vue/, // .vue
+                    /\.md$/ // .md
+                ],
+
+                // global imports to register
+                imports: ['vue', 'vue-router'],
+
+                // Filepath to generate corresponding .d.ts file.
+                // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
+                // Set `false` to disable.
+                dts: './auto-imports.d.ts',
+
+                // Inject the imports at the end of other imports
+                injectAtEnd: true,
+
+                // Generate corresponding .eslintrc-auto-import.json file.
+                // eslint globals Docs - https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals
+                eslintrc: {
+                    enabled: true, // Default `false`
+                    filepath: './.eslintrc-auto-import.json' // Default `./.eslintrc-auto-import.json`
+                }
+            }),
+            Components({
+                resolvers: [ElementPlusResolver()]
+            })
+        ],
         // 别名
         resolve: {
             alias: {
