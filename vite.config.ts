@@ -6,6 +6,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import dayjs from 'dayjs'
+// 引入插件
+import VitePluginMetaEnv from 'vite-plugin-meta-env'
 
 const { name: title, version: APP_VERSION } = require('./package.json')
 
@@ -20,14 +22,6 @@ export default (configEnv: ConfigEnv) => {
         APP_BUILD_TIME: dayjs().format('YYYY-MM-DD HH:mm:ss')
     }
 
-    // import.meta.env.key 环境变量生成
-    const getMetaEnv = (env: Record<string, any>) => {
-        const metaEnv: Record<string, any> = {}
-        for (const key in env) {
-            metaEnv[`import.meta.env.${key}`] = JSON.stringify(env[key])
-        }
-        return metaEnv
-    }
     return defineConfig({
         // 设置打包路径
         base: env.VITE_BASE_URL,
@@ -66,7 +60,10 @@ export default (configEnv: ConfigEnv) => {
             }),
             Components({
                 resolvers: [ElementPlusResolver()]
-            })
+            }),
+            // 环境变量
+            VitePluginMetaEnv(metaEnv, 'import.meta.env'),
+            VitePluginMetaEnv(metaEnv, 'process.env')
         ],
         // 别名
         resolve: {
@@ -102,10 +99,6 @@ export default (configEnv: ConfigEnv) => {
                     }
                 }
             }
-        },
-        // 环境变量常量
-        define: {
-            ...getMetaEnv(metaEnv)
         },
         // 本地服务配置
         server: {

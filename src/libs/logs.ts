@@ -7,14 +7,20 @@
 // 环境变量
 import { loadRemoteJs } from '@/libs/utils'
 ;(function () {
+    console.log(import.meta.env)
+    // 由于process.env是单个定义的，所以也只能单个访问
+    // @ts-ignore
+    console.log(process.env.APP_VERSION)
+    // @ts-ignore
+    console.log(process.env.APP_NAME)
+    // @ts-ignore
+    console.log(process.env.APP_BUILD_TIME)
     // 开启移动端debug
     const src = '//cdn.jsdelivr.net/npm/eruda'
     if (!/debug=true/.test(window.location.href)) {
-        console.log(import.meta.env)
         return
     }
     loadRemoteJs(src).then(() => {
-        console.log(import.meta.env)
         // @ts-ignore
         eruda.init()
     })

@@ -8,7 +8,7 @@ import HelloWorld from './components/HelloWorld.vue'
         <a
             href="https://github.com/wforguo/vue3-quick-start"
             target="_blank"
-            style="display: flex; flex-wrap: wrap; align-items: center; margin-right: 99px"
+            style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; margin-right: 99px"
             title="star me"
         >
             <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 48px; height: 48px">
