@@ -4,11 +4,14 @@ This template should help get you started developing with Vue 3 in Vite.
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-## 配置
+[Vue3工程化项目搭建指北](https://forguo.cn/f2e/%E5%B7%A5%E7%A8%8B%E5%8C%96/Vue3%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.html
+)
+
+## vite配置
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## 开始
+## 运行
 
 ```sh
 pnpm install
@@ -57,7 +60,7 @@ pnpm lint
 
 [eruda](https://github.com/liriliri/eruda)
 
-开启方式
+开启方式【根据需要自行修改变量或开启方式】
 
 链接后添加`?debug=true`
 
