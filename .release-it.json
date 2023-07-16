@@ -1,0 +1,18 @@
+{
+    "plugins": {
+        "@release-it/conventional-changelog": {
+            "preset": "angular",
+            "infile": "CHANGELOG.md"
+        }
+    },
+    "git": {
+        "commitMessage": "chore: vue3-quick-start release v${version}"
+    },
+    "github": {
+        "release": false,
+        "draft": false
+    },
+    "npm": {
+        "publish": false
+    }
+}
