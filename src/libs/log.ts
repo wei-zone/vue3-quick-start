@@ -6,7 +6,8 @@
 
 // 环境变量
 import { loadRemoteJs } from '@/libs/utils'
-;(function () {
+
+export default () => {
     console.log(import.meta.env)
     // 由于process.env是单个定义的，所以也只能单个访问
     // @ts-ignore
@@ -24,4 +25,4 @@ import { loadRemoteJs } from '@/libs/utils'
         // @ts-ignore
         eruda.init()
     })
-})()
+}

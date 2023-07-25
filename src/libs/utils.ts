@@ -26,6 +26,10 @@ export function loadRemoteJs(src: string) {
     })
 }
 
+/**
+ * @desc 获取url参数
+ * @param name
+ */
 export function getSearchParam(name: string) {
     const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i')
     const r = window.location.search.substr(1).match(reg)

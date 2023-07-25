@@ -3,7 +3,8 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
-import '@/libs/logs'
+import { log } from '@/libs'
+log()
 
 const app = createApp(App)
 
