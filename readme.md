@@ -1,13 +1,12 @@
 # vue3-quick-start
 
-English | [简体中文](https:github.com/wforguo/vue3-quick-start/blob/main/readme.zh-CN.md)
+English | [简体中文](https://github.com/wforguo/vue3-quick-start/blob/master/readme.zh-CN.md)
 
 This template should help get you started developing with Vue 3 in Vite.
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-[start guide](https://forguo.cn/f2e/%E5%B7%A5%E7%A8%8B%E5%8C%96/Vue3%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.html
-)
+[start guide](https://forguo.cn/f2e/%E5%B7%A5%E7%A8%8B%E5%8C%96/Vue3%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.html)
 
 ## vite config
 
