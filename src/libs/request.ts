@@ -5,8 +5,7 @@
  */
 
 import axios from 'axios'
-import type { AxiosInstance, AxiosRequestConfig } from 'axios'
-import { log } from '@/plugin/index'
+import type { AxiosInstance, AxiosRequestConfig, CreateAxiosDefaults } from 'axios'
 
 export interface IResponse {
     code?: number
@@ -21,12 +20,9 @@ class Request {
     // 用于存储控制器对象
     abortControllerMap: Map<string, AbortController>
     // 构造函数
-    constructor(config?: AxiosRequestConfig) {
+    constructor(config?: CreateAxiosDefaults) {
         // 创建axios实例
-        this.instance = axios.create({
-            baseURL: '/api',
-            ...config
-        })
+        this.instance = axios.create(config)
         // 用于存储控制器对象
         this.abortControllerMap = new Map()
         // 设置拦截器
@@ -51,9 +47,9 @@ class Request {
             // 将控制器实例存储到Map中
             this.abortControllerMap.set(url, controller)
             // 设置请求头
-            config.headers = {
-                ...config.headers,
-                'x-auth-token': import.meta.env.VITE_TOKEN
+            const token = localStorage.getItem('token')
+            if (config && config.headers && token) {
+                config.headers.set('token', token)
             }
             return config
         })
@@ -69,7 +65,7 @@ class Request {
             if (res.status === 200) {
                 return Promise.resolve(res.data)
             }
-            log.danger(res)
+            console.error(res)
             return Promise.reject(res)
         })
     }

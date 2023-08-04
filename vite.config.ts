@@ -110,10 +110,10 @@ export default (configEnv: ConfigEnv) => {
             port: 5000,
             host: true,
             proxy: {
-                '/api': {
+                '/apis': {
                     target: 'https://cloud-app.com.cn/',
                     changeOrigin: true,
-                    rewrite: path => path.replace(/^\/api/, '')
+                    rewrite: path => path.replace(/^\/apis/, '')
                 },
                 '/amap': {
                     target: 'https://restapi.amap.com/',
