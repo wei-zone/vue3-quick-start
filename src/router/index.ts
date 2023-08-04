@@ -29,7 +29,21 @@ for (const componentPath in views) {
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
-    routes: [...routes]
+    routes: [
+        ...routes,
+        ...[
+            {
+                path: '/:pathMatch(.*)',
+                // 访问主页的时候 重定向到index页面
+                redirect: '/404'
+            },
+            {
+                path: '/404',
+                name: '/404',
+                component: import('@/views/Error/404.vue')
+            }
+        ]
+    ]
 } as RouterOptions)
 
 console.log(routes)

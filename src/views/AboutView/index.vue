@@ -1,5 +1,5 @@
 <template>
-    <div class="about">
+    <div class="page about">
         <h1>This is an about page</h1>
     </div>
 </template>
@@ -12,12 +12,4 @@ export default {
     title: '关于'
 }
 </script>
-<style>
-@media (min-width: 1024px) {
-    .about {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-    }
-}
-</style>
+<style></style>

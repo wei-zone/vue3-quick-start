@@ -1,11 +1,8 @@
 <template>
-    <div class="home">
-        <TheWelcome />
-    </div>
+    <div class="page home">home</div>
 </template>
 <script setup lang="ts">
 import './index.scss'
-import TheWelcome from '../../components/TheWelcome.vue'
 </script>
 <script lang="ts">
 export default {

@@ -1,6 +1,6 @@
 # vue3-quick-start
 
-简体中文 | [English](https:github.com/wforguo/vue3-quick-start/blob/main/readme.md)
+简体中文 | [English](https://github.com/wforguo/vue3-quick-start/blob/main/readme.md)
 
 This template should help get you started developing with Vue 3 in Vite.
 

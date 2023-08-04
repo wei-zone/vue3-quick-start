@@ -1,4 +1,3 @@
-/// <reference types="vite/client" />
 interface ImportMetaEnv {
     readonly BASE_URL: string
     readonly MODE: string
@@ -12,4 +11,18 @@ interface ImportMetaEnv {
 interface ImportMeta {
     readonly env: ImportMetaEnv
     readonly glob: (path: string, config: object) => Record<string, () => Promise<{ default: any }>>
+}
+
+declare module 'weixin-js-sdk' {
+    const wx: {
+        onMenuShareAppMessage: (data: any) => void
+        onMenuShareTimeline: (data: any) => void
+        onMenuShareQQ: (data: any) => void
+        onMenuShareWeibo: (data: any) => void
+        onMenuShareQZone: (data: any) => void
+        config: (data: object) => void
+        ready: (callback: () => void) => void
+        error: (callback: (res: string) => void) => void
+    }
+    export default wx
 }
