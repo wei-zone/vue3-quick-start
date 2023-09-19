@@ -45,7 +45,10 @@
             align-items: center;
             justify-content: center;
         }
-
+        .pace {
+            height: 16px;
+            border-radius: 8px;
+        }
         .pace .pace-progress {
             color: #fff;
             background: #fff;
@@ -66,7 +69,7 @@
             var hm = document.createElement("script");
             hm.src = "https://hm.baidu.com/hm.js?e2b1313ceb93a9a3428404181b004fc1";
             var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
+            s.parentNode.appendChild(hm);
         })();
         // 移动端禁止滑动
         if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))) {

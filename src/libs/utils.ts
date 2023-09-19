@@ -49,6 +49,7 @@ function getConfig(): any {
     return jssdk({ url })
 }
 
+// 微信SDK初始化
 async function wxInit(shareData: IShareData) {
     const res = await getConfig()
     const data = res.data

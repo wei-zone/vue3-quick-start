@@ -65,8 +65,8 @@ export default (configEnv: ConfigEnv) => {
                 resolvers: [VantResolver()]
             }),
             // 环境变量
-            VitePluginMetaEnv(metaEnv, 'import.meta.env'),
-            VitePluginMetaEnv(metaEnv, 'process.env')
+            VitePluginMetaEnv(metaEnv, 'import.meta.env')
+            // VitePluginMetaEnv(metaEnv, 'process.env')
         ],
         // 别名
         resolve: {

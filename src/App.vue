@@ -8,7 +8,9 @@ import { RouterView } from 'vue-router'
 onBeforeMount(() => {
     // @ts-ignore
     Pace.on('hide', function () {
-        document.querySelector('.loading')?.setAttribute('style', 'display: none')
+        const $loading = document.querySelector('.loading')
+        $loading?.setAttribute('style', 'display: none')
+        $loading?.remove()
     })
 })
 </script>

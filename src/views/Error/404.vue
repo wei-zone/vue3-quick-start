@@ -5,7 +5,7 @@
  * @Description: 404.vue
 -->
 <template>
-    <div class="page error 404">
+    <div class="error 404 w-page">
         <van-empty image="search" description="Page Not Found" />
     </div>
 </template>
