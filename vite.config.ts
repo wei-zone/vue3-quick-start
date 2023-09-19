@@ -25,7 +25,6 @@ export default (configEnv: ConfigEnv) => {
         APP_NAME: title,
         APP_BUILD_TIME: dayjs().format('YYYY-MM-DD HH:mm:ss')
     }
-
     return defineConfig({
         // 设置打包路径
         base: mode === 'development' ? '/' : `/apps/${title}/`,

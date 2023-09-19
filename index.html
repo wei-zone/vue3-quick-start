@@ -1,80 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" href="/favicon.png" />
-        <!-- 在 head 标签中添加 meta 标签，并设置 viewport-fit=cover 值 -->
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover"
-        />
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" href="/favicon.png"/>
+    <!-- 在 head 标签中添加 meta 标签，并设置 viewport-fit=cover 值 -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover"
+    />
+    <title>vue3-quick-start</title>
+    <script data-pace-options='{ "ajax": false , "restartOnRequestAfter": false}'
+            src="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/pace.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/themes/black/pace-theme-center-simple.min.css"
+          rel="stylesheet">
+    <style>
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #fff;
+        }
 
-        <title>vue3-quick-start</title>
-        <style>
-            html {
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-                background-color: #fff;
-            }
-            body {
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-                /*background-color: #041A70;*/
-            }
+        /*body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小*/
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /*background-color: #041A70;*/
+            margin: 0 auto !important;
+            position: relative;
+        }
 
-            /*body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小*/
-            body {
-                margin: 0 auto !important;
-                position: relative;
-            }
-        </style>
-        <style>
-            .loading {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                right: 0;
-                z-index: 1999;
-                background: #fff;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .van-loading {
-                position: relative;
-                color: #c8c9cc;
-                font-size: 0;
-                vertical-align: middle;
-            }
-            .van-loading__text1 {
-                display: inline-block;
-                color: #969799;
-                font-size: 14px;
-                vertical-align: middle;
-            }
-        </style>
-        <script>
-            // 百度统计
-            var _hmt = _hmt || [];
-            (function() {
-                var hm = document.createElement("script");
-                hm.src = "https://hm.baidu.com/hm.js?e2b1313ceb93a9a3428404181b004fc1";
-                var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(hm, s);
-            })();
-        </script>
-    </head>
-    <body>
-        <div id="app">
-            <div class="loading">
-                <div class="van-loading__text1">加载中...</div>
-            </div>
-        </div>
-        <script type="module" src="/src/main.ts"></script>
-    </body>
+        .loading {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 1999;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pace .pace-progress {
+            color: #fff;
+            background: #fff;
+            box-shadow: 60px 0 #000, 240px 0 #000;
+        }
+
+        .pace .pace-activity {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+    </style>
+    <script>
+        // 百度统计
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e2b1313ceb93a9a3428404181b004fc1";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        // 移动端禁止滑动
+        if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))) {
+            document.addEventListener("touchmove", function (e) {
+                e.preventDefault()
+            }, {passive: false})
+        }
+    </script>
+</head>
+<!-- 防止伪类:active失效-->
+<body ontouchstart>
+<div class="loading"></div>
+<div id="app">
+</div>
+<script type="module" src="/src/main.ts"></script>
+</body>
 </html>

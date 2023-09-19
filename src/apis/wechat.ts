@@ -6,7 +6,7 @@
 import { request } from '@/libs'
 
 /**
- * 微信jssdk
+ * 微信js sdk
  * @param data
  */
 export const jssdk = function (data: object) {

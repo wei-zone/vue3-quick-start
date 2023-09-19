@@ -4,7 +4,7 @@ import App from './App.vue'
 import router from './router'
 import { log } from '@/libs'
 
-import './assets/style/main.scss'
+import './assets/css/main.scss'
 import 'virtual:uno.css'
 
 log()

@@ -6,13 +6,12 @@
 import Request from '@/libs/request'
 import type { AxiosRequestConfig } from 'axios'
 import type { CreateAxiosDefaults } from 'axios'
-import config from '@/config'
 
 export { default as log } from '@/libs/log'
 export * from '@/libs/utils'
 
 const instance = new Request({
-    baseURL: `${config.BASE_URL}/apis/`
+    baseURL: `${import.meta.env.VITE_API_URL}/apis/`
 } as CreateAxiosDefaults)
 
 // 请求
