@@ -9,11 +9,8 @@ import './index.scss'
 onMounted(() => {
     console.log('onMounted')
 })
+defineOptions({
+    name: 'TimerView',
+    title: 'Timer'
+})
 </script>
-<script lang="ts">
-export default {
-    name: 'VantView',
-    title: 'VantView'
-}
-</script>
-<style></style>
