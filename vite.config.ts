@@ -27,6 +27,7 @@ export default (configEnv: ConfigEnv) => {
 
     return defineConfig({
         // 设置打包路径
+        // base: env.VITE_BASE_URL,
         // 插件
         plugins: [
             vue(),
