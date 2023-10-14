@@ -13,7 +13,10 @@ import postcsspxtoviewport from 'postcss-px-to-viewport'
 import dayjs from 'dayjs'
 // 引入插件
 import VitePluginMetaEnv from 'vite-plugin-meta-env'
-
+// gzip压缩
+// import { visualizer } from 'rollup-plugin-visualizer'
+import viteCompression from 'vite-plugin-compression'
+// import viteImagemin from 'vite-plugin-imagemin'
 const { name: title, version: APP_VERSION } = require('./package.json')
 
 // https://vitejs.dev/config/
@@ -111,8 +114,10 @@ export default (configEnv: ConfigEnv) => {
         build: {
             sourcemap: false,
             rollupOptions: {
-                // 确保外部化处理那些你不想打包进库的依赖
                 output: {
+                    chunkFileNames: 'js/[name]-[hash].js', // 引入文件名的名称
+                    entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
+                    assetFileNames: '[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
                     // entryFileNames: 'main-app.js',
                     manualChunks(id, { getModuleInfo }) {
                         // 打包依赖
@@ -128,12 +133,47 @@ export default (configEnv: ConfigEnv) => {
                                 return 'common'
                             }
                         }
-                    },
-                    // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
-                    globals: {
-                        vue: 'Vue'
                     }
-                }
+                },
+                plugins: [
+                    // build.rollupOptions.plugins[]
+                    viteCompression({
+                        verbose: true, // 是否在控制台中输出压缩结果
+                        disable: false,
+                        threshold: 10240, // 如果体积大于阈值，将被压缩，单位为b，体积过小时请不要压缩，以免适得其反
+                        algorithm: 'gzip', // 压缩算法，可选['gzip'，' brotliccompress '，'deflate '，'deflateRaw']
+                        ext: '.gz',
+                        deleteOriginFile: true // 源文件压缩后是否删除(我为了看压缩后的效果，先选择了true)
+                    })
+                    // 参数及配置：https://github.com/vbenjs/vite-plugin-imagemin/blob/main/README.zh_CN.md
+                    // viteImagemin({
+                    //     gifsicle: {
+                    //         optimizationLevel: 7,
+                    //         interlaced: false
+                    //     },
+                    //     optipng: {
+                    //         optimizationLevel: 7
+                    //     },
+                    //     mozjpeg: {
+                    //         quality: 20
+                    //     },
+                    //     pngquant: {
+                    //         quality: [0.8, 0.9],
+                    //         speed: 4
+                    //     },
+                    //     svgo: {
+                    //         plugins: [
+                    //             {
+                    //                 name: 'removeViewBox'
+                    //             },
+                    //             {
+                    //                 name: 'removeEmptyAttrs',
+                    //                 active: false
+                    //             }
+                    //         ]
+                    //     }
+                    // })
+                ]
             }
         },
         // 本地服务配置
