@@ -7,6 +7,9 @@
 import axios from 'axios'
 import type { AxiosInstance, AxiosRequestConfig, CreateAxiosDefaults } from 'axios'
 
+/**
+ * @Description: 请求响应接口
+ */
 export interface IResponse {
     code?: number
     message?: string
@@ -91,6 +94,20 @@ class Request {
             this.abortControllerMap.delete(_url)
         }
     }
+}
+
+const instance = new Request({
+    baseURL: `${import.meta.env.VITE_API_URL}`
+} as CreateAxiosDefaults)
+
+// 请求
+export const request = (config: AxiosRequestConfig) => {
+    return instance.request(config)
+}
+
+// 取消请求
+export const cancelRequest = (url: string) => {
+    instance.cancelRequest(url)
 }
 
 export default Request
