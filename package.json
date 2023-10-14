@@ -6,6 +6,7 @@
     "scripts": {
         "dev": "vite",
         "build": "pnpm type-check && pnpm build-only",
+        "deploy": "cloudbase framework:deploy",
         "preview": "vite preview",
         "test:unit": "vitest",
         "test:e2e": "start-server-and-test preview http://localhost:4173 'cypress run --e2e'",
