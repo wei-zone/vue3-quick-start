@@ -52,8 +52,8 @@ jobs:
                 run: cd dist && ls -ll
 
             # 云开发部署
-            -   name: Deploy to Tencent CloudBase
-                uses: TencentCloudBase/cloudbase-action@v2
+#            -   name: Deploy to Tencent CloudBase
+#                uses: TencentCloudBase/cloudbase-action@v2
 #                with:
                     # 以下参数配置于 github secrets
 #                    secretId: ${{secrets.SECRETID}}
