@@ -3,5 +3,5 @@ import { defineConfig } from 'unocss'
 
 export default defineConfig({
     // ...UnoCSS options
-    rules: [['w-page', { height: '100%', overflow: 'hidden' }]]
+    rules: [['a-page', { width: '100%', height: '100%', overflow: 'hidden' }]]
 })

@@ -1,5 +1,5 @@
 <template>
-    <div class="vant w-page">
+    <div class="vant a-page">
         <van-button type="primary" text="提交"></van-button>
     </div>
 </template>

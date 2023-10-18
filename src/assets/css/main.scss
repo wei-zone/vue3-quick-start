@@ -11,6 +11,8 @@
 
 body {
     min-height: 100vh;
+    height: 100%;
+    overflow: hidden;
     color: var(--color-text);
     background: var(--color-background);
     transition: color 0.5s, background-color 0.5s;
@@ -50,6 +52,6 @@ input::-webkit-inner-spin-button {
 
 #app {
     margin: 0 auto;
-    font-weight: normal;
     height: 100%;
+    overflow: hidden;
 }

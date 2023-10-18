@@ -4,8 +4,7 @@ name: Tcb Deploy
 on:
     push:
         branches:
-            - master
-            - main
+            - mobile
 
 # 触发构建动作
 #    push:
@@ -52,10 +51,10 @@ jobs:
                 run: cd dist && ls -ll
 
             # 云开发部署
-#            -   name: Deploy to Tencent CloudBase
-#                uses: TencentCloudBase/cloudbase-action@v2
-#                with:
+            -   name: Deploy to Tencent CloudBase
+                uses: TencentCloudBase/cloudbase-action@v2
+                with:
                     # 以下参数配置于 github secrets
-#                    secretId: ${{secrets.SECRETID}}
-#                    secretKey: ${{secrets.SECRETKEY}}
-#                    envId: ${{secrets.ENV_ID}}
+                    secretId: ${{secrets.TCB_SECRETID}}
+                    secretKey: ${{secrets.TCB_SECRETKEY}}
+                    envId: ${{secrets.TCB_ENV_ID}}
