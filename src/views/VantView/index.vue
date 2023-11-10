@@ -10,7 +10,7 @@ onMounted(() => {
     console.log('onMounted')
 })
 defineOptions({
-    name: 'TimerView',
-    title: 'Timer'
+    name: 'VantView',
+    title: 'Vant'
 })
 </script>

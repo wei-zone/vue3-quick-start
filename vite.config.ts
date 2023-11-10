@@ -4,7 +4,9 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { VantResolver } from '@vant/auto-import-resolver'
+import unocssPlugin from 'unocss/vite'
+
 import dayjs from 'dayjs'
 // 引入插件
 import VitePluginMetaEnv from 'vite-plugin-meta-env'
@@ -32,9 +34,9 @@ export default (configEnv: ConfigEnv) => {
         plugins: [
             vue(),
             vueJsx(),
+            unocssPlugin(),
             // 按需导入
             AutoImport({
-                resolvers: [ElementPlusResolver()],
                 // targets to transform
                 include: [
                     /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
@@ -62,7 +64,7 @@ export default (configEnv: ConfigEnv) => {
                 }
             }),
             Components({
-                resolvers: [ElementPlusResolver()]
+                resolvers: [VantResolver()]
             }),
             // 环境变量
             VitePluginMetaEnv(metaEnv, 'import.meta.env'),
@@ -150,12 +152,12 @@ export default (configEnv: ConfigEnv) => {
             port: 5000,
             host: true,
             proxy: {
-                '/apis': {
-                    target: 'https://cloud-app.com.cn/',
+                '/apis/': {
+                    target: 'https://forguo.cn/api/',
                     changeOrigin: true,
                     rewrite: path => path.replace(/^\/apis/, '')
                 },
-                '/amap': {
+                '/amap/': {
                     target: 'https://restapi.amap.com/',
                     changeOrigin: true,
                     rewrite: path => path.replace(/^\/amap/, '')

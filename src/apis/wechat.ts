@@ -12,7 +12,7 @@ import { request } from '@/libs'
 export const jssdk = function (data: object) {
     return request({
         method: 'get',
-        url: `api/wechat/jssdk`,
+        url: `/v1/weapp/jssdk`,
         params: data
     })
 }

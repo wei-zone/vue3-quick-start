@@ -14,6 +14,8 @@ interface ImportMeta {
 
 declare module 'weixin-js-sdk' {
     const wx: {
+        updateAppMessageShareData: (data: any) => void
+        updateTimelineShareData: (data: any) => void
         onMenuShareAppMessage: (data: any) => void
         onMenuShareTimeline: (data: any) => void
         onMenuShareQQ: (data: any) => void
