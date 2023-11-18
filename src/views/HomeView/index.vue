@@ -38,7 +38,7 @@ const email = ref('123456@qq.com')
 
 let loading = ref<boolean>(false)
 
-const onSubmit = values => {
+const onSubmit = (values: any) => {
     console.log('submit', values)
     loading.value = !loading.value
     setTimeout(() => {

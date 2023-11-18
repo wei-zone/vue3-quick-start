@@ -4,7 +4,8 @@ name: Tcb Deploy
 on:
     push:
         branches:
-            - mobile
+            - master
+            - main
 
 # 触发构建动作
 #    push:

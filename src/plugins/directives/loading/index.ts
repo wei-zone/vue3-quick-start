@@ -1,29 +1,28 @@
 /**
- * @Author: weiguo
- * @Date: 2023/11/10 21:37
- * @Description: v-loading 指令
+ * v-loading 指令
  */
 import { isObject } from '@vueuse/core'
-import type { Directive } from 'vue'
+import type { Directive, DirectiveBinding, UnwrapRef } from 'vue'
 
 import { createLoading } from './createLoading'
-import type { LoadingOptions } from './types'
+import type { LoadingOptions, ElementLoading, LoadingBinding, LoadingOptionsResolved } from './types'
+import { INSTANCE_KEY } from './types'
+
 const isString = (target: any): boolean => typeof target === 'string'
-const INSTANCE_KEY = Symbol('ElLoading')
 
 /**
  * 参数处理
  * @param options
  */
-const resolveOptions = (options: LoadingOptions): LoadingOptions => {
-    let target: HTMLElement | string
+const resolveOptions = (options: LoadingOptions): LoadingOptionsResolved => {
+    let target: HTMLElement
     if (isString(options.target)) {
         target = document.querySelector<HTMLElement>(options.target as string) ?? document.body
     } else {
-        target = options.target || document.body
+        target = (options.target || document.body) as HTMLElement
     }
     return {
-        delay: options.delay || 0,
+        delay: Number(options.delay || 0),
         indicator: options.indicator || false,
         size: options.size || 'default',
         spinning: options.spinning || false,
@@ -41,10 +40,9 @@ const resolveOptions = (options: LoadingOptions): LoadingOptions => {
  * @param el
  * @param binding
  */
-const createInstance = (el, binding) => {
+const createInstance = (el: ElementLoading, binding: DirectiveBinding<LoadingBinding>) => {
     // 获取对应属性，HTML属性，绑定为 loading-xxx
-    const getProp = name => el.getAttribute(`loading-${name}`)
-
+    const getProp = <K extends keyof LoadingOptions>(name: K) => el.getAttribute(`loading-${name}`)
     // 全屏展示
     const fullscreen = getProp('fullscreen') ?? binding.modifiers.fullscreen
 
@@ -59,18 +57,14 @@ const createInstance = (el, binding) => {
         background: getProp('background'),
         // 默认为el，全屏为body，否则为自定义
         target: getProp('target') ?? (fullscreen ? undefined : el),
-        fullscreen
+        fullscreen: !!fullscreen
     })
 
-    //父级元素相对定位
-    if ('style' in options.parent) {
-        options.parent.style.position = 'relative'
-    }
-
     // 背景色
-    const backgroundColor = options.background || 'rgba(44, 48, 56, 0.4)'
+    const backgroundColor = options.background || 'rgba(44, 48, 56, 0.55)'
+
     // 实例样式
-    const instanceStyle = {
+    const instanceStyle: Partial<CSSStyleDeclaration> = {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -78,13 +72,12 @@ const createInstance = (el, binding) => {
         flexDirection: 'column',
         gap: '12px',
         backgroundColor,
-        opacity: 1,
-        zIndex: 1000,
-        top: 0,
-        right: 0,
-        left: 0,
-        bottom: 0,
-        transaction: 'ease all 300ms'
+        opacity: '1',
+        zIndex: '1000',
+        top: '0',
+        right: '0',
+        left: '0',
+        bottom: '0'
     }
 
     // 保存实例
@@ -102,16 +95,17 @@ const createInstance = (el, binding) => {
  * @param newOptions
  * @param originalOptions
  */
-const updateOptions = (newOptions, originalOptions) => {
+const updateOptions = (newOptions: UnwrapRef<LoadingOptions>, originalOptions: LoadingOptions) => {
     for (const key of Object.keys(originalOptions)) {
-        if (isRef(originalOptions[key])) originalOptions[key].value = newOptions[key]
+        const optionKey = key as keyof LoadingOptions // 类型断言
+        if (isRef(originalOptions[optionKey])) originalOptions[optionKey].value = newOptions[optionKey]
     }
 }
 
 /**
  * v-loading 指令
  */
-const vLoading: Directive = {
+const vLoading: Directive<ElementLoading, LoadingBinding> = {
     // 及他自己的所有子节点都挂载完成后调用
     mounted(el, binding) {
         // 如果绑定的值为true，则创建实例
@@ -138,5 +132,25 @@ const vLoading: Directive = {
         el[INSTANCE_KEY]?.instance.close()
     }
 }
+
+// 添加基础样式
+const style = document.createElement('style')
+style.innerHTML = `
+  .v-loading-target {
+    position: relative;
+    > :not(.v-loading-container) {
+      pointer-events: none;
+      user-select: none;
+      opacity: 0.65;
+      transition: opacity 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+    }
+    > .v-loading-container {
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+    }
+  }
+`
+
+document.head.appendChild(style)
 
 export default vLoading

@@ -1,41 +1,51 @@
-import { createVNode, render, reactive } from 'vue'
+import { createVNode, render } from 'vue'
+import type { VNode } from 'vue'
 import { Loading } from 'vant'
 
-export function createLoading(props, wait = false) {
-    const target = props.target
-    let vm = null
+import type { LoadingOptionsResolved } from './types'
+
+export function createLoading(options: LoadingOptionsResolved & { style: Partial<CSSStyleDeclaration> }, wait = false) {
+    const target = options.target as HTMLElement
+    const originOptions = {
+        ...options
+    }
+    delete originOptions.target
+    delete originOptions.parent
     const data = reactive({
-        tip: '',
-        spinning: true,
-        ...props
+        ...originOptions
     })
 
-    const svg = data.indicator
     // 自定义加载器，可以是一个 svg
-    const indicator = createVNode('svg', {
-        class: 'circular',
-        viewBox: '-10 -10 50 50',
-        ...(svg ? { innerHTML: svg } : {})
-    })
-
-    // 默认加载器
-    const indicatorDefault = createVNode('div', {
-        style: {
-            fontSize: '24px'
+    const svg = data.indicator
+    const indicator = createVNode(
+        'span',
+        {
+            class: 'indicator',
+            style: {
+                fontSize: '24px'
+            }
         },
-        spin: true
-    })
+        {
+            default: () => svg
+        }
+    )
 
     // 生成 Loading vNode
-    vm = createVNode(
+    const vm: VNode = createVNode(
         Loading,
-        // props
+        // options
         {
-            ...data,
-            indicator: data.indicator ? indicator : indicatorDefault
+            delay: data.delay,
+            indicator: data.indicator ? indicator : '',
+            size: data.size,
+            spinning: data.spinning,
+            tip: data.tip || '加载中...',
+            wrapperClassName: data.wrapperClassName,
+            style: data.style,
+            class: 'v-loading-container'
         },
         {
-            default: () => data.tip
+            // default: () => data.tip
         }
         // children，允许字符串或数组
     )
@@ -52,8 +62,9 @@ export function createLoading(props, wait = false) {
     // 卸载
     function close() {
         if (vm?.el && vm.el.parentNode) {
-            vm.el.parentNode.removeChild(vm.el)
+            vm.el.parentNode.removeChild(<Node>vm.el)
         }
+        target?.classList.remove('v-loading-target')
     }
 
     // 挂载
@@ -62,13 +73,15 @@ export function createLoading(props, wait = false) {
             return
         }
         target.appendChild(vm.el as HTMLElement)
+        target.classList.add('v-loading-target')
     }
 
     if (target) {
-        open(target)
+        open(target as HTMLElement)
     }
 
     return {
+        ...toRefs(data),
         vm,
         close,
         open,
@@ -76,7 +89,9 @@ export function createLoading(props, wait = false) {
             return data.spinning
         },
         get $el(): HTMLElement {
-            return vm?.el
+            return vm?.el as HTMLElement
         }
     }
 }
+
+export type LoadingInstance = ReturnType<typeof createLoading>
