@@ -6,13 +6,10 @@
     <!-- 在 head 标签中添加 meta 标签，并设置 viewport-fit=cover 值 -->
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover, user-scalable=no"
     />
-    <title>vue3-quick-start</title>
-    <script data-pace-options='{ "ajax": false , "restartOnRequestAfter": false}'
-            src="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/pace.min.js"></script>
-    <link href="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/themes/black/pace-theme-center-simple.min.css"
-          rel="stylesheet">
+    <title>%VITE_TITLE%</title>
+
     <style>
         html {
             width: 100%;
@@ -40,26 +37,12 @@
             bottom: 0;
             right: 0;
             z-index: 1999;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.75);
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        .pace {
-            height: 16px;
-            border-radius: 8px;
-        }
-        .pace .pace-progress {
-            color: #fff;
-            background: #fff;
-            box-shadow: 60px 0 #000, 240px 0 #000;
-        }
-
-        .pace .pace-activity {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #000;
+            color: #1989fa;
+            font-size: 26px;
         }
     </style>
     <script>
@@ -72,17 +55,20 @@
             s.parentNode.appendChild(hm);
         })();
         // 移动端禁止滑动
-        if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))) {
-            document.addEventListener("touchmove", function (e) {
-                e.preventDefault()
-            }, {passive: false})
-        }
+        // if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))) {
+        //     document.addEventListener("touchmove", function (e) {
+        //         e.preventDefault()
+        //     }, {passive: false})
+        // }
     </script>
 </head>
 <!-- 防止伪类:active失效-->
 <body ontouchstart>
-<div class="loading"></div>
+
 <div id="app">
+    <div class="loading">
+        加载中...
+    </div>
 </div>
 <script type="module" src="/src/main.ts"></script>
 </body>
