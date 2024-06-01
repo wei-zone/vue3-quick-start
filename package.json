@@ -19,9 +19,11 @@
         "release": "release-it"
     },
     "dependencies": {
+        "@ant-design/icons-vue": "^6.1.0",
+        "@vueuse/core": "^10.9.0",
+        "ant-design-vue": "^4.2.1",
         "axios": "^1.4.0",
         "dayjs": "^1.11.9",
-        "element-plus": "^2.3.7",
         "pinia": "^2.1.3",
         "vue": "^3.3.4",
         "vue-router": "^4.2.2"
@@ -68,11 +70,6 @@
             "npm run lint",
             "git add ."
         ]
-    },
-    "config": {
-        "commitizen": {
-            "path": "cz-conventional-changelog"
-        }
     },
     "commitlint": {
         "extends": [

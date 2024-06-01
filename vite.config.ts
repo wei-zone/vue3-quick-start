@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import dayjs from 'dayjs'
 // 引入插件
 import VitePluginMetaEnv from 'vite-plugin-meta-env'
@@ -12,7 +12,9 @@ import VitePluginMetaEnv from 'vite-plugin-meta-env'
 // import { visualizer } from 'rollup-plugin-visualizer'
 // import viteCompression from 'vite-plugin-compression'
 // import viteImagemin from 'vite-plugin-imagemin'
-const { name: title, version: APP_VERSION } = require('./package.json')
+// @ts-ignore
+import pkg from './package.json'
+const { name: title, version: APP_VERSION } = pkg
 
 // https://vitejs.dev/config/
 export default (configEnv: ConfigEnv) => {
@@ -30,11 +32,21 @@ export default (configEnv: ConfigEnv) => {
         base: mode === 'development' ? '/' : `/${title}/`,
         // 插件
         plugins: [
-            vue(),
+            vue({
+                script: {
+                    defineModel: true
+                },
+                template: {
+                    compilerOptions: {
+                        // iconpark- 视为自定义元素
+                        isCustomElement: tag => tag.includes('iconpark-')
+                    }
+                }
+            }),
             vueJsx(),
             // 按需导入
             AutoImport({
-                resolvers: [ElementPlusResolver()],
+                resolvers: [AntDesignVueResolver()],
                 // targets to transform
                 include: [
                     /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
@@ -42,9 +54,8 @@ export default (configEnv: ConfigEnv) => {
                     /\.vue\?vue/, // .vue
                     /\.md$/ // .md
                 ],
-
                 // global imports to register
-                imports: ['vue', 'vue-router'],
+                imports: ['vue', 'vue-router', 'pinia'],
 
                 // Filepath to generate corresponding .d.ts file.
                 // Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
@@ -62,7 +73,11 @@ export default (configEnv: ConfigEnv) => {
                 }
             }),
             Components({
-                resolvers: [ElementPlusResolver()]
+                resolvers: [
+                    AntDesignVueResolver({
+                        importStyle: false // css in js
+                    })
+                ]
             }),
             // 环境变量
             VitePluginMetaEnv(metaEnv, 'import.meta.env'),
@@ -151,7 +166,7 @@ export default (configEnv: ConfigEnv) => {
             host: true,
             proxy: {
                 '/apis': {
-                    target: 'https://cloud-app.com.cn/',
+                    target: 'https://forguo.cn/api/',
                     changeOrigin: true,
                     rewrite: path => path.replace(/^\/apis/, '')
                 },

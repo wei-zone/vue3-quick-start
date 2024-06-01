@@ -1,0 +1,13 @@
+@import './color';
+
+:root {
+    --transition-ease: ease;
+    --transition-time: 0.3s;
+    --transition-all: all var(--transition-ease) var(--transition-time);
+}
+
+:root {
+    --text-important: var(--gray-1);
+    --text-primary: var(--gray-1);
+    --background-medium: var(--gray-7);
+}

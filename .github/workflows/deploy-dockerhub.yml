@@ -9,7 +9,6 @@ on:
     push:
         # 以下 分支有 push 时触发
         branches:
-            - master
             - main
 
 env: # 设置环境变量
@@ -25,30 +24,30 @@ jobs:
         # 步骤可以是操作或 shell 命令
         steps:
             # 检出推送的代码
-            -   name: Checkout - 检出代码
-                uses: actions/checkout@v3
+            - name: Checkout - 检出代码
+              uses: actions/checkout@v3
 
             # 使用pnpm
-            -   name: Setup pnpm
-                uses: pnpm/action-setup@v2
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v2
 
             # Node版本
-            -   name: Setup Node.js v16
-                uses: actions/setup-node@v3
-                with:
-                    node-version: 16
-                    cache: 'pnpm'
+            - name: Setup Node.js v16
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+                  cache: 'pnpm'
             # 安装依赖
-            -   name: Install NodeModules - 安装依赖
-                run: pnpm install
+            - name: Install NodeModules - 安装依赖
+              run: pnpm install
 
             # 打包
-            -   name: Build - 打包
-                run: pnpm run build
+            - name: Build - 打包
+              run: pnpm run build
 
             # 打包结果
-            -   name: Build Status - 打包结果
-                run: cd dist && ls -ll
+            - name: Build Status - 打包结果
+              run: cd dist && ls -ll
 
             # 打包Docker镜像并push
 #            -   name: Docker Image Build - 打包Docker镜像
@@ -58,7 +57,7 @@ jobs:
 #                    username: ${{ secrets.DOCKER_USERNAME }}
 #                    password: ${{ secrets.DOCKER_PASSWORD }}
 
-            # 登录远程服务器并部署容器
+# 登录远程服务器并部署容器
 #            -   name: Docker Image Deploy - 部署
 #                uses: appleboy/ssh-action@master
 #                with:

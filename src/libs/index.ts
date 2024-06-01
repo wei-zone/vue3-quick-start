@@ -4,6 +4,6 @@
  * @Description: index.ts
  */
 
-export { default as log } from '@/libs/log'
+export * from '@/libs/log'
 export * from '@/libs/utils'
 export * from '@/libs/request'
