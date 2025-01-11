@@ -15,8 +15,8 @@ importers:
         specifier: ^10.9.0
         version: 10.11.1(vue@3.5.13(typescript@4.9.5))
       '@wei-design/web-vue':
-        specifier: ^1.0.1
-        version: 1.0.1(vue@3.5.13(typescript@4.9.5))
+        specifier: ^1.0.2
+        version: 1.0.2(vue@3.5.13(typescript@4.9.5))
       ant-design-vue:
         specifier: ^4.2.1
         version: 4.2.6(vue@3.5.13(typescript@4.9.5))
@@ -1049,8 +1049,8 @@ packages:
   '@vueuse/shared@10.11.1':
     resolution: {integrity: sha512-LHpC8711VFZlDaYUXEBbFBCQ7GS3dVU9mjOhhMhXP6txTV4EhYQg/KGnQuvt/sPAtoUKq7VVUnL6mVtFoL42sA==}
 
-  '@wei-design/web-vue@1.0.1':
-    resolution: {integrity: sha512-SJ3egrjp7e4MSgfG2+5oosXYtLKd8gU/Hyv+2RL0Rh/ANVOkfirimF7rlr8nemeEDLoYkcqWnWpZh1ndJXxCwA==}
+  '@wei-design/web-vue@1.0.2':
+    resolution: {integrity: sha512-VKC1CQjw+rolF+P+TExLiAA/wBl30iHqtAgaFryCeRX1j8kPJYfn+QwZ0Nrzfvfdhda4oZtRM6Gy5gyJIKxjKQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       vue: ^3.2.33
@@ -4693,7 +4693,7 @@ snapshots:
       '@types/node': 20.5.1
       chalk: 4.1.2
       cosmiconfig: 8.3.6(typescript@4.9.5)
-      cosmiconfig-typescript-loader: 4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@4.9.5))(ts-node@10.9.2(@types/node@18.19.67)(typescript@4.9.5))(typescript@4.9.5)
+      cosmiconfig-typescript-loader: 4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@4.9.5))(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.9.5))(typescript@4.9.5)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -5491,7 +5491,7 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@wei-design/web-vue@1.0.1(vue@3.5.13(typescript@4.9.5))':
+  '@wei-design/web-vue@1.0.2(vue@3.5.13(typescript@4.9.5))':
     dependencies:
       dayjs: 1.11.13
       vue: 3.5.13(typescript@4.9.5)
@@ -6053,7 +6053,7 @@ snapshots:
 
   core-util-is@1.0.2: {}
 
-  cosmiconfig-typescript-loader@4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@4.9.5))(ts-node@10.9.2(@types/node@18.19.67)(typescript@4.9.5))(typescript@4.9.5):
+  cosmiconfig-typescript-loader@4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@4.9.5))(ts-node@10.9.2(@types/node@20.5.1)(typescript@4.9.5))(typescript@4.9.5):
     dependencies:
       '@types/node': 20.5.1
       cosmiconfig: 8.3.6(typescript@4.9.5)
