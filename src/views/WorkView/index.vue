@@ -2,7 +2,7 @@
     <LayoutPage class="work" v-loading="loading">
         <template #actions>
             <a-input v-model:value="form.username" placeholder="请输入用户名" style="width: 180px" />
-            <a-button type="primary" @click="fetch">查询</a-button>
+            <WeButton type="primary" @click="fetch">查询</WeButton>
         </template>
         <template #default="{ height }">
             <a-table
